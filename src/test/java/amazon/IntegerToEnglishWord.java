@@ -7,7 +7,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class IntegerToEnglishWord {
-    public String numberToWords(int num) {
+    public String numberToWords2(int num) {
 
         if (num == 0) {
             return "Zero";
@@ -127,6 +127,62 @@ public class IntegerToEnglishWord {
             isFirst = false;
         }
         return sb.toString().trim().replaceAll(" +", " ");
+
+    }
+
+    public String numberToWords(int num) {
+
+        return helper(num).trim().replaceAll(" +", " ");
+
+    }
+
+    private String helper(int num) {
+        var numberWords = new HashMap<Integer, String>();
+        numberWords.put(0, "");
+        numberWords.put(1, "One");
+        numberWords.put(2, "Two");
+        numberWords.put(3, "Three");
+        numberWords.put(4, "Four");
+        numberWords.put(5, "Five");
+        numberWords.put(6, "Six");
+        numberWords.put(7, "Seven");
+        numberWords.put(8, "Eight");
+        numberWords.put(9, "Nine");
+        numberWords.put(10, "Ten");
+        numberWords.put(11, "Eleven");
+        numberWords.put(12, "Twelve");
+        numberWords.put(13, "Thirteen");
+        numberWords.put(14, "Fourteen");
+        numberWords.put(15, "Fifteen");
+        numberWords.put(16, "Sixteen");
+        numberWords.put(17, "Seventeen");
+        numberWords.put(18, "Eighteen");
+        numberWords.put(19, "Nineteen");
+
+        var tensMultiples = new HashMap<Integer, String>();
+        tensMultiples.put(0, "");
+        tensMultiples.put(2, "Twenty");
+        tensMultiples.put(3, "Thirty");
+        tensMultiples.put(4, "Forty");
+        tensMultiples.put(5, "Fifty");
+        tensMultiples.put(6, "Sixty");
+        tensMultiples.put(7, "Seventy");
+        tensMultiples.put(8, "Eighty");
+        tensMultiples.put(9, "Ninety");
+
+        if (num < 20) {
+            return numberWords.get(num);
+        } else if (num < 100) {
+            return tensMultiples.get(num / 10) + " " + helper(num % 10);
+        } else if (num < 1000) {
+            return helper(num / 100) + " Hundred " + helper(num % 100);
+        } else if (num < 1000000) {
+            return helper(num / 1000) + " Thousand " + helper(num % 1000);
+        } else if (num < 1000000000) {
+            return helper(num / 1000000) + " Million " + helper(num % 1000000);
+        } else {
+            return helper(num / 1000000000) + " Billion " + helper(num % 1000000000);
+        }
 
     }
 

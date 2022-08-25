@@ -1,4 +1,4 @@
-package main.java;
+package amazon;
 
 public class TreeNode {
     public int val;

@@ -1,6 +1,6 @@
 package blind75;
 
-import main.java.TreeNode;
+import amazon.TreeNode;
 import org.junit.jupiter.api.Test;
 
 public class MaximumDepthOfBinaryTree {
